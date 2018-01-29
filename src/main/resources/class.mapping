@@ -1,0 +1,14 @@
+be.c4j.ee.security.custom.AbstractGenericVoter=be.atbash.ee.security.octopus.authz.permission.voter.AbstractGenericVoter
+be.c4j.ee.security.permission.GenericPermissionVoter=be.atbash.ee.security.octopus.authz.permission.voter.GenericPermissionVoter
+be.c4j.ee.security.realm.OctopusPermissions=be.atbash.ee.security.octopus.authz.annotation.RequiresPermissions
+be.c4j.ee.security.model.UserPrincipal=be.atbash.ee.security.octopus.subject.UserPrincipal
+be.c4j.ee.security.realm.AuthenticationInfoBuilder=be.atbash.ee.security.octopus.realm.AuthenticationInfoBuilder
+be.c4j.ee.security.realm.AuthorizationInfoBuilder=be.atbash.ee.security.octopus.realm.AuthorizationInfoBuilder
+be.c4j.ee.security.realm.SecurityDataProvider=be.atbash.ee.security.octopus.realm.SecurityDataProvider
+be.c4j.ee.security.role.SimpleNamedRole=be.atbash.ee.security.octopus.authz.permission.role.ApplicationRole
+
+org.apache.shiro.authc.AuthenticationInfo=be.atbash.ee.security.octopus.authc.AuthenticationInfo
+org.apache.shiro.authc.AuthenticationToken=be.atbash.ee.security.octopus.token.AuthenticationToken
+org.apache.shiro.authc.UsernamePasswordToken=be.atbash.ee.security.octopus.token.UsernamePasswordToken
+org.apache.shiro.authz.AuthorizationInfo=be.atbash.ee.security.octopus.authz.AuthorizationInfo
+org.apache.shiro.subject.PrincipalCollection=be.atbash.ee.security.octopus.subject.PrincipalCollection
