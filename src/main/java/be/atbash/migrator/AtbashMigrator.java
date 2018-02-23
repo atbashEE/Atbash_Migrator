@@ -17,6 +17,8 @@ package be.atbash.migrator;
 
 import be.atbash.migrator.java.JavaMigrator;
 import be.atbash.migrator.maven.MavenConfigMigrator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.nio.file.*;
@@ -27,6 +29,8 @@ import java.nio.file.attribute.BasicFileAttributes;
  */
 
 public class AtbashMigrator {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(AtbashMigrator.class);
 
     private MavenConfigMigrator mavenConfigMigrator;
     private JavaMigrator javaMigrator;
@@ -67,10 +71,28 @@ public class AtbashMigrator {
     }
 
     public static void main(String[] args) throws IOException {
-        System.out.println("Atbash Migrator");
-        System.out.println("===============");
+        LOGGER.info("Atbash Migrator");
+        LOGGER.info("===============");
 
-        Path startPath = Paths.get("/Users/rubus/temp/securedComponent");
+        Path startPath = Paths.get("C:\\java\\temp\\jsf-renderer-extensions\\examples");
         new AtbashMigrator().transformFiles(startPath);
+
+        showInformationMessages();
+    }
+
+    private static void showInformationMessages() {
+        LOGGER.info("");
+        LOGGER.info("When you have following error message when starting the application on the server");
+        LOGGER.info("java.lang.IllegalStateException: No ConfigProviderResolver implementation found!");
+
+        LOGGER.info("");
+        LOGGER.info("Add the following dependency to your pom.xml file");
+
+        LOGGER.info("<dependency>");
+        LOGGER.info("    <groupId>be.atbash.config</groupId>");
+        LOGGER.info("    <artifactId>geronimo-config</artifactId>");
+        LOGGER.info("    <version>0.9.1</version>");
+        LOGGER.info("</dependency>");
+
     }
 }
