@@ -15,7 +15,10 @@
  */
 package be.atbash.migrator.maven;
 
+import be.atbash.util.StringUtils;
 import be.atbash.util.exception.AtbashUnexpectedException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -39,6 +42,8 @@ import java.util.*;
  *
  */
 public class MavenConfigMigrator {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(MavenConfigMigrator.class);
 
     private static final List<String> GROUP_ID_CANDIDATES;
 
@@ -113,14 +118,25 @@ public class MavenConfigMigrator {
     private void transformDependency(MavenDependency mavenDependency, MavenProperties mavenProperties) {
         if (candidate(mavenDependency)) {
             String newDependency = dependencyMapping.get(mavenDependency.getGroupArtifactId());
+            if (StringUtils.isEmpty(newDependency)) {
+                LOGGER.warn(String.format("No mapped dependency found for %s, unchanged in pom.xml", mavenDependency.getGroupArtifactId()));
+                return;
+            }
             String[] parts = newDependency.split(":");
             mavenDependency.setGroupId(parts[0]);
             mavenDependency.setArtifactId(parts[1]);
             if (mavenDependency.isVersionDefined()) {
                 if (mavenDependency.isVersionHardCoded()) {
-                    // FIXME
+                    mavenDependency.setVersion(parts[2]);
                 } else {
-                    mavenProperties.setProperty(mavenDependency.getVersionProperty(), parts[2]);
+                    if (mavenProperties != null) {
+                        mavenProperties.setProperty(mavenDependency.getVersionProperty(), parts[2]);
+                    } else {
+                        // version is a property, but not defined in this pm (but probably int the parent)
+                        // So hard-code it
+                        mavenDependency.setVersion(parts[2]);
+                    }
+
                 }
             }
         }

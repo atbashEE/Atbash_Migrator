@@ -86,6 +86,7 @@ public class MavenDependency {
 
     public void setVersion(String version) {
         this.version = version;
+        xmlElement.getElementsByTagName("version").item(0).setTextContent(version);
     }
 
     public boolean isVersionDefined() {
