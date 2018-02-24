@@ -7,6 +7,24 @@ be.c4j.ee.security.realm.AuthorizationInfoBuilder=be.atbash.ee.security.octopus.
 be.c4j.ee.security.realm.SecurityDataProvider=be.atbash.ee.security.octopus.realm.SecurityDataProvider
 be.c4j.ee.security.role.SimpleNamedRole=be.atbash.ee.security.octopus.authz.permission.role.ApplicationRole
 
+#be.rubus.web.jerry.config.JerryConfigurator -> No replacement as config way is changed.
+be.rubus.web.jerry.component.ComponentInitializer=be.atbash.ee.jsf.jerry.component.ComponentInitializer
+be.rubus.web.jerry.interceptor.RendererInterceptor=be.atbash.ee.jsf.jerry.interceptor.RendererInterceptor
+be.rubus.web.jerry.interceptor.AbstractRendererInterceptor=be.atbash.ee.jsf.jerry.interceptor.AbstractRendererInterceptor
+be.rubus.web.jerry.metadata.CommonMetaDataKeys=be.atbash.ee.jsf.jerry.metadata.CommonMetaDataKeys
+be.rubus.web.jerry.metadata.MetaDataEntry=be.atbash.ee.jsf.jerry.metadata.MetaDataEntry
+be.rubus.web.jerry.metadata.MetaDataTransformer=be.atbash.ee.jsf.jerry.metadata.MetaDataTransformer
+be.rubus.web.jerry.ordering.InvocationOrder=be.atbash.ee.jsf.jerry.ordering.InvocationOrder
+be.rubus.web.jerry.renderkit.JerryRenderKit=be.atbash.ee.jsf.jerry.renderkit.JerryRenderKit
+be.rubus.web.jerry.startup.StartupEvent=be.atbash.ee.jsf.jerry.startup.StartupEvent
+
+be.rubus.web.valerie.custom.DateRange=be.atbash.ee.jsf.valerie.custom.DateRange
+be.rubus.web.valerie.custom.ValSize=be.atbash.ee.jsf.valerie.custom.ValSize
+be.rubus.web.valerie.custom.ValPast=be.atbash.ee.jsf.valerie.custom.ValPast
+be.rubus.web.valerie.custom.ValFuture=be.atbash.ee.jsf.valerie.custom.ValFuture
+be.rubus.web.valerie.provider.DateProvider=be.atbash.ee.jsf.valerie.provider.DateProvider
+be.rubus.web.valerie.recording.RecordValue=be.atbash.ee.jsf.valerie.recording.RecordValue
+
 org.apache.shiro.authc.AuthenticationInfo=be.atbash.ee.security.octopus.authc.AuthenticationInfo
 org.apache.shiro.authc.AuthenticationToken=be.atbash.ee.security.octopus.token.AuthenticationToken
 org.apache.shiro.authc.UsernamePasswordToken=be.atbash.ee.security.octopus.token.UsernamePasswordToken

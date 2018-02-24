@@ -1,1 +1,4 @@
 be.c4j.ee.security.octopus\:octopus-javaee7-jsf=be.atbash.ee.security:octopus-jsf7:0.3-SNAPSHOT
+be.rubus.web\:jerry=be.atbash.ee.jsf:jerry:0.9.0
+be.rubus.web\:valerie=be.atbash.ee.jsf:valerie:0.9.0
+be.rubus.web.valerie\:valerie-primefaces=be.atbash.ee.jsf.valerie:valerie-primefaces:0.9.0

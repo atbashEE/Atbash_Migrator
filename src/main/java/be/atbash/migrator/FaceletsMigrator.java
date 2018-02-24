@@ -43,6 +43,7 @@ public class FaceletsMigrator {
     private void defineMapping() {
         namespaceMapping = new HashMap<>();
         namespaceMapping.put("http://www.c4j.be/secure", "http://www.atbash.be/secure/octopus");
+        namespaceMapping.put("http://www.rubus.be/web/validation/valerie", "http://www.atbash.be/ee/validation/valerie");
     }
 
     public void transform(Path file) {
