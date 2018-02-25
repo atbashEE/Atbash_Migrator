@@ -42,7 +42,7 @@ public class AtbashMigrator {
         faceletsMigrator = new FaceletsMigrator();
     }
 
-    public void transformFiles(Path startPath) throws IOException {
+    private void transformFiles(Path startPath) throws IOException {
         Files.walkFileTree(startPath, new SimpleFileVisitor<Path>() {
             @Override
             public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) {

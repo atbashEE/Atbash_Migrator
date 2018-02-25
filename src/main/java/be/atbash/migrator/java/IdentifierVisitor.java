@@ -26,15 +26,15 @@ import java.util.Map;
  *
  */
 
-public class IdentifierVisitor {
+class IdentifierVisitor {
 
     private Map<String, String> identifierMapping;
 
-    public IdentifierVisitor(Map<String, String> identifierMapping) {
+    IdentifierVisitor(Map<String, String> identifierMapping) {
         this.identifierMapping = identifierMapping;
     }
 
-    public void replaceIdentifiers(Node node) {
+    void replaceIdentifiers(Node node) {
         if (node instanceof Name) {
             Name name = (Name) node;
             if (identifierMapping.containsKey(name.getIdentifier())) {

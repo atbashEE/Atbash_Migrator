@@ -101,4 +101,12 @@ public class MavenDependency {
         // We assume '${property}' with no spaces.
         return version.substring(2, version.length() - 1);
     }
+
+    public String getScope() {
+        return scope;
+    }
+
+    public String getClassifier() {
+        return classifier;
+    }
 }
