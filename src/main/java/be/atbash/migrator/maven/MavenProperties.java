@@ -16,12 +16,11 @@
 package be.atbash.migrator.maven;
 
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static org.w3c.dom.Node.ELEMENT_NODE;
 
@@ -31,45 +30,68 @@ import static org.w3c.dom.Node.ELEMENT_NODE;
 
 public class MavenProperties {
 
-    private Element xmlElement;
-    private Map<String, String> propertyValues;
+    private Map<PropertyIdentification, String> propertyValues = new HashMap<>();
 
-    public MavenProperties(Element xmlElement) {
-        this.xmlElement = xmlElement;
-
-        propertyValues = new HashMap<>();
-        readPropertyValues();
+    public void addNode(Element xmlElement) {
+        readPropertyValues(xmlElement);
     }
 
-    private void readPropertyValues() {
+    private void readPropertyValues(Element xmlElement) {
         NodeList childNodes = xmlElement.getChildNodes();
         for (int i = 0; i < childNodes.getLength(); i++) {
             if (ELEMENT_NODE == childNodes.item(i).getNodeType()) {
-                propertyValues.put(childNodes.item(i).getNodeName(), childNodes.item(i).getTextContent());
+                String nodeName = childNodes.item(i).getNodeName();
+                PropertyIdentification identification = new PropertyIdentification(childNodes.item(i), nodeName);
+                propertyValues.put(identification, childNodes.item(i).getTextContent());
             }
         }
+    }
+
+    public boolean hasPropertyName(String key) {
+        return !getMatchingProperties(key).isEmpty();
+    }
+
+    private List<PropertyIdentification> getMatchingProperties(String key) {
+        return propertyValues.keySet().stream().filter(pi -> pi.getName().equals(key))
+                .collect(Collectors.toList());
     }
 
     public void setProperty(String key, String value) {
-        propertyValues.put(key, value);
+        // FIXME support for adding property ??
+        getMatchingProperties(key).forEach(pi -> propertyValues.put(pi, value));
     }
 
     public void redefineNode() {
-        Set<String> propertiesUpdated = new HashSet<>();
+        propertyValues.entrySet().forEach(this::updateValue);
+    }
 
-        NodeList childNodes = xmlElement.getChildNodes();
-        for (int i = 0; i < childNodes.getLength(); i++) {
-            if (ELEMENT_NODE == childNodes.item(i).getNodeType()) {
-                String key = childNodes.item(i).getNodeName();
-                if (propertyValues.containsKey(key)) {
-                    childNodes.item(i).setTextContent(propertyValues.get(key));
-                    propertiesUpdated.add(key);
-                } else {
-                    xmlElement.removeChild(childNodes.item(i)); // TODO Test if this works
-                }
-            }
+    private void updateValue(Map.Entry<PropertyIdentification, String> entry) {
+        Node node = entry.getKey().getNode();
+        if (entry.getValue() == null) {
+            // remove ??
+            // Does this work?
+
+            node.getParentNode().removeChild(node);
+        } else {
+            node.setTextContent(entry.getValue());
+        }
+    }
+
+    private static class PropertyIdentification {
+        private Node node;
+        private String name;
+
+        public PropertyIdentification(Node node, String name) {
+            this.node = node;
+            this.name = name;
         }
 
-        // FIXME Those PropertyValues which are not in propertiesUpdated -> Add Tag
+        public Node getNode() {
+            return node;
+        }
+
+        public String getName() {
+            return name;
+        }
     }
 }

@@ -132,7 +132,7 @@ public class MavenConfigMigrator {
                     if (mavenProperties != null) {
                         mavenProperties.setProperty(mavenDependency.getVersionProperty(), parts[2]);
                     } else {
-                        // version is a property, but not defined in this pm (but probably int the parent)
+                        // version is a property, but not defined in this pom (but probably int the parent)
                         // So hard-code it
                         mavenDependency.setVersion(parts[2]);
                     }
@@ -152,7 +152,11 @@ public class MavenConfigMigrator {
         MavenProperties mavenProperties = null;
         NodeList properties = doc.getElementsByTagName("properties");
         if (properties.getLength() > 0) {
-            mavenProperties = new MavenProperties((Element) properties.item(0));
+            mavenProperties = new MavenProperties();
+            for (int i = 0; i < properties.getLength(); i++) {
+                mavenProperties.addNode((Element) properties.item(i));
+            }
+
         }
         return mavenProperties;
     }
