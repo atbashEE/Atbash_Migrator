@@ -33,6 +33,7 @@ public class MavenDependency {
     private String version;
     private String scope;
     private String classifier;
+    private String type;
 
     public MavenDependency(Element xmlElement) {
         this.xmlElement = xmlElement;
@@ -58,6 +59,9 @@ public class MavenDependency {
                         break;
                     case "classifier":
                         classifier = childNodes.item(i).getTextContent();
+                        break;
+                    case "type":
+                        type = childNodes.item(i).getTextContent();
                         break;
                     default:
                         throw new IllegalArgumentException(String.format("Unsupported value for tag name %s", childNodes.item(i).getNodeName()));
@@ -108,5 +112,9 @@ public class MavenDependency {
 
     public String getClassifier() {
         return classifier;
+    }
+
+    public String getType() {
+        return type;
     }
 }

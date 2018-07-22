@@ -53,7 +53,9 @@ public class FaceletsMigrator {
             XMLOutputFactory xof = XMLOutputFactory.newInstance();
             XMLEventFactory ef = XMLEventFactory.newInstance();
 
+            factory.setProperty(XMLInputFactory.SUPPORT_DTD, false);
             XMLEventReader reader = factory.createXMLEventReader(file.toString(), in);
+
             XMLEventWriter writer = xof.createXMLEventWriter(out);
 
             while (reader.hasNext()) {

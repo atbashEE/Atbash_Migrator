@@ -6,6 +6,8 @@ be.c4j.ee.security.realm.AuthenticationInfoBuilder=be.atbash.ee.security.octopus
 be.c4j.ee.security.realm.AuthorizationInfoBuilder=be.atbash.ee.security.octopus.realm.AuthorizationInfoBuilder
 be.c4j.ee.security.realm.SecurityDataProvider=be.atbash.ee.security.octopus.realm.SecurityDataProvider
 be.c4j.ee.security.role.SimpleNamedRole=be.atbash.ee.security.octopus.authz.permission.role.ApplicationRole
+be.c4j.ee.security.salt.SaltHashingUtil=be.atbash.ee.security.octopus.crypto.hash.SaltHashingUtil
+be.c4j.ee.security.messages.FacesMessages=be.atbash.ee.security.octopus.view.messages.FacesMessages
 
 #be.rubus.web.jerry.config.JerryConfigurator -> No replacement as config way is changed.
 be.rubus.web.jerry.component.ComponentInitializer=be.atbash.ee.jsf.jerry.component.ComponentInitializer
@@ -29,4 +31,5 @@ org.apache.shiro.authc.AuthenticationInfo=be.atbash.ee.security.octopus.authc.Au
 org.apache.shiro.authc.AuthenticationToken=be.atbash.ee.security.octopus.token.AuthenticationToken
 org.apache.shiro.authc.UsernamePasswordToken=be.atbash.ee.security.octopus.token.UsernamePasswordToken
 org.apache.shiro.authz.AuthorizationInfo=be.atbash.ee.security.octopus.authz.AuthorizationInfo
+org.apache.shiro.authz.SimpleAuthorizationInfo=be.atbash.ee.security.octopus.authz.SimpleAuthorizationInfo
 org.apache.shiro.subject.PrincipalCollection=be.atbash.ee.security.octopus.subject.PrincipalCollection
